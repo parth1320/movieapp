@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div>
+        {{>header}}
+    </div>
+    <div>
+        <table class="table table-striped ">
+            <tr class="bg-info">
+                <th>Movies</th>
+                <th>Year</th>
+                <th>Minimum_Age</th>
+                <th>Production Country</th>
+                <th>rating</th>
+                <th>View Details</th>
+            </tr>
+
+            <tbody id="myTable">
+
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    var myArray = []
+
+    $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/allrate',
+        success: function(response){
+            myArray = response.rows
+            buildTable(myArray)
+            console.log(myArray)
+        }
+    })
+
+    function buildTable(data) {
+        var table = document.getElementById('myTable')
+        var row = "";
+        let id = []
+        for (var i=0; i<data.length; i++){
+            
+            var  d_row= data[i].get_all_films_rating_sort;
+            var a_values = d_row.split(",");
+            id[i]=a_values[0].replace("(", "");
+            row+=`<tr id="${id[i]}" onClick = "fetch_Subordinates()" action="/view_movies"> `;
+            for (var j=0; j<a_values.length-1; j++){
+                row += `<td>${a_values[j+1].replace(")", "")}</td>`
+            }
+             
+        var url = "/view_movies/"+ id[i]
+        row+=`<td><form action= ${url}}><input type="submit" value="View" onClick=fetch_Subordinates() /></form></td>`
+        row+="</tr>"
+        }
+        console.log(row);
+         table.innerHTML += row
+    }
+
+    function fetch_Subordinates () {
+        console.log(event.target.parentNode.id)
+        console.log("gfdsjhgfdsa")
+        var a = event.target.parentNode.id;
+     document.cookie =  "selectmovie="+a;
+        console.log(a)
+
+    }
+</script>
+    
+</body>
+</html>

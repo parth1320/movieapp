@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Movies</title>
+</head>
+<body>
+    <div>
+        {{>header}}
+    </div>
+    <div>
+        <h2><span class="badge badge-secondary">Movie</span></h2>
+        <div>
+
+        </div>
+    </div>
+    <div>
+        <h2><span class="badge badge-secondary">Cast</span></h2>
+        <div>
+            <table class="table table-striped ">
+                <tr class="bg-info">
+                    <th>Movies</th>
+                    <th>Year</th>
+                    <th>Minimum_Age</th>
+                    <th>Production Country</th>
+                </tr>
+                <tbody id="cast">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <h2><span class="badge badge-secondary">Subordinate Movies</span></h2>
+        <div>
+            <table class="table table-striped ">
+                <tr class="bg-info">
+                    <th>Movies</th>
+                    <th>Year</th>
+                    <th>Minimum_Age</th>
+                    <th>Production Country</th>
+                </tr>
+                <tbody id="subordinate_movies">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <h2><span class="badge badge-secondary">suggestions</span></h2>
+        <div>
+            <table class="table table-striped ">
+                <tr class="bg-info">
+                    <th>Movies</th>
+                    <th>Year</th>
+                    <th>Minimum_Age</th>
+                    <th>Production Country</th>
+                </tr>
+                <tbody id= "suggestions">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        //for Suggestiins:
+    var myArray = []
+    $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/moviesuggestion',
+        success: function(response){
+            myArray = response.rows
+            buildTable(myArray)
+            console.log(myArray)
+        }
+
+        const queryString = window.location.search;
+      console.log(queryString);
+    })
+    function buildTable(data) {
+        var table = document.getElementById('suggestions')
+        var row = "";
+        let id = []
+        for (var i=0; i<data.length; i++){
+            console.log(data[i].suggestion_movies)
+            row+=`<tr>`
+            var  d_row= data[i].suggestion_movies;
+            var a_values = d_row.split(",");
+            for (var j=0; j<a_values.length; j++){
+                row += `<td>${a_values[j].replace(")", "")}</td>`
+            }
+            row+=`</tr>`
+        }
+        console.log(row);
+         table.innerHTML += row
+    }
+    function fetch_Subordinates () {
+        console.log(event.target.parentNode.id)
+        console.log("gfdsjhgfdsa")
+    }
+    
+
+        //for casts:
+        var castarray = []
+    $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/movieperson/',
+        success: function(response){
+            castarray = response.rows
+            buildTablecast(castarray)
+            console.log(castarray)
+        }
+    })
+    function buildTablecast(data) {
+        var table = document.getElementById('cast')
+        var row = "";
+        let id = []
+        console.log(data);
+        for (var i=0; i<data.length; i++){
+            row+=`<tr>`
+            var  d_row= data[i].get_movie_related_person;
+            console.log(data[i].get_movie_related_person);
+            var a_values = d_row.split(",");
+            for (var j=0; j<a_values.length; j++){
+                row += `<td>${a_values[j].replace(")", "")}</td>`
+            }
+            row +=`</tr>`
+        }
+        console.log(row);
+         table.innerHTML += row
+    }
+   
+
+</script>
+</body>
+</html>

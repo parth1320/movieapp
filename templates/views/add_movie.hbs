@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Add Movie</title>
+</head>
+<body>
+    <div>
+        {{>header}}
+    </div>
+    <div>
+        <div><h1>Add Movie</h1></div>
+        <div>
+            <form action="">
+                <p>
+                <label>Subordinate to
+                <input type="text" name="customer_name" required>
+                </label> 
+                </p>
+
+                <p>
+                <label>Title 
+                <input type="date">
+                </label>
+                </p>
+
+                <p>
+                <label>Release_Year 
+                <input type="text" name="email_address">
+                </label>
+                </p>
+
+                <p>
+                <label>minimum_age 
+                <input type="text" name="email_address">
+                </label>
+                </p>
+
+                <p>
+                <label>production_Country 
+                <input type="text" name="email_address">
+                </label>
+                </p>
+
+                <p><button>Submit</button></p>
+            </form><br><br><br><br><br>
+            <form action="">
+                <h1>Add Genres</h1>
+                <div></div>
+            </form>
+        </div> 
+
+        <div>
+            <form>
+            <p>Add movie Genres:</p>
+            <input form="myForm" type="checkbox" name="Action" id="Action" value="Action" onclick="return       ValidateSelection();">
+            <label for="Genre1">Action</label>
+            <input form="myForm" type="checkbox" name="Comedy" id="Comedy"  value="Comedy" onclick="return ValidateSelection();"> 
+            <label for="Genre2">Comedy</label>
+            <input form="myForm" type="checkbox" name="Drama" id="Drama"  value="Drama" onclick="return ValidateSelection();"> 
+            <label for="Genre3">Drama</label>
+            <input form="myForm" type="checkbox" name="Horror" id="Horror" value="Horror" > 
+            <label for="Genre4">Horror</label>
+            <input form="myForm" type="checkbox" name="Mystery" id="Mystery" value="Mystery" > 
+            <label for="Genre5">Mystery</label>
+            <input form="myForm" type="checkbox" name="Romance" id="Romance" value="Romance" > 
+            <label for="Genre6">Romance</label>
+            <input form="myForm" type="checkbox" name="Thriller" id="Thriller" value="Thriller" > 
+            <label for="Genre7">Thriller</label>
+            <input form="myForm" type="checkbox" name="Adventure" id="Adventure" value="Adventure" > 
+            <label for="Genre8">Adventure</label>
+            <input form="myForm" type="checkbox" name="Science Fiction" id="Science Fiction" value="Science Fiction" > 
+            <label for="Genre9">Science Fiction</label>
+            <p><input type="submit" value="Submit"></p>
+
+        </div>
+</body>
+</html>

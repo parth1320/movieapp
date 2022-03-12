@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Netflix</title>
+</head>
+<body>
+    <div>
+        {{>header}}
+    </div>
+
+    <form action="/action_page.php">
+    <label for="cars">Choose a car:</label>
+ 
+    
+    </form>
+    <div id="chooseuser"></div>
+    <script>
+    var myArray = []
+
+    $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/user',
+        success: function(response){
+            myArray = response.rows
+            buildTable(myArray)
+            console.log(myArray)
+        }
+    })
+
+    function buildTable(data) {
+        var table = document.getElementById('chooseuser')
+        var row = `<select name="userNameslist" id="userNameslist" onChange = "user_select()">`;
+        let id = []
+        for (var i=0; i<data.length; i++){
+            
+            var  d_row= data[i].get_all_users;
+            var a_values = d_row.split(",");
+            id[i]=a_values[0].replace("(", "");
+            console.log(id[i]);
+            console.log("inside i loop");
+            for (var j=0; j<1; j++){
+                row += `<option id="${id[i]}"  name="usernames" value="${id[i]}" onSelect="user_select()">${a_values[1].replace(")", "")}</option>`
+            }
+        }
+        console.log("00" + row);
+        row+=`</select>`
+        row+=`<form action="/index"><input type="submit" value="Submit" /></form>`
+         table.innerHTML += row
+    }
+
+    function user_select() {
+        console.log(event.target.id)
+        var a = document.getElementById("userNameslist").value
+        document.cookie = "username="+a;
+    }
+ 
+</script>
+<script  src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Person</title>
+</head>
+<body>
+    <div>
+        {{>header}}
+    </div>
+    <div>
+        <table class="table table-striped ">
+            <tr class="bg-info">
+                <th>Names</th>
+            </tr>
+            <tbody id="myTable">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+         $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/movieperson/4',
+        success: function(response){
+            myArray = response.rows
+            buildTable(myArray)
+            console.log(myArray)
+        }
+    })
+
+    function buildTable(data) {
+        var table = document.getElementById('myTable')
+
+        for (var i=0; i<data.length; i++){
+            var row = `<tr>
+                        <td>${data[i].get_movie_related_person}</td>
+                      </tr>`
+            table.innerHTML += row
+
+
+        }
+    }
+    </script>
+</body>
+</html>

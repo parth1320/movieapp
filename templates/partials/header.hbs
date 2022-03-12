@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Navbar</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<nav class="navbar">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button class="navbar-toggler" data-toggle="open-navbar1">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="#">
+        <h4>Netflix<span>Prime</span></h4>
+      </a>
+    </div>
+
+    <div class="navbar-menu" id="open-navbar1">
+      <ul class="navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li class="navbar-dropdown">
+          <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-id">
+            Persons <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown" id="my-dropdown-id">
+            <li><a href="/add_person">Add Person</a></li>
+            <li class="separator"></li>
+            <li><a href="#">Delete Person</a></li>
+            <li class="separator"></li>
+            <li><a href="/update_person">Update Person</a></li>
+          </ul>
+        </li>
+        <li class="navbar-dropdown">
+          <a href="#" class="dropdown-toggler" data-dropdown="blog">
+            Movies <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown" id="blog">
+            <li><a href="/add_movie">Add Movie</a></li>
+            <li class="separator"></li>
+            <li><a href="#">Delete Movie</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Rating</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- partial -->
+  <script  src="js/script.js"></script>
+
+</body>
+</html>
